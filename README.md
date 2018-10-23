@@ -28,3 +28,22 @@ flask_minijax.py and templates/minijax.html are a tiny example of using JQuery w
 * You will write your own Dockerfile (see examples provided in prior projects). Dockerfile should be placed inside vocab folder.
 
 * You will submit your credentials.ini in canvas. It should have information on how we should get your git repo (which should contain your Dockerfile). 
+
+## Grading Rubric
+
+* If your code works as expected: 100 points. This includes:
+	* AJAX in the frontend (vocab.html) 
+	* Logic in the backend (flask_vocab.py)
+	* Frontend to backend interaction (with correct requests/responses) between vocab.html and flask_vocab.py
+
+* If the JQuery logic is not working, 30 points will be docked off. 
+
+* If the html file (replacing the original form interaction, i.e., replacing the button with JQuery code) is wrong or is missing in the appropriate location, 30 points will be docked off.
+
+* If none of the functionalities work, 40 points will be given assuming 
+    * the credentials.ini is submitted with the correct URL of your repo, 
+    * the Dockerfile builds without any errors, and 
+    
+* If the Dockerfile doesn't build or is missing, 20 points will be docked off.
+
+* If credentials.ini is missing, 0 will be assigned.
