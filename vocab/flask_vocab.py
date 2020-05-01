@@ -69,32 +69,32 @@ def success():
 #######################
 # Form handler.
 # CIS 322 note:
-#   You'll need to change this to a
+#   You'll need to change this to 
 #   a JSON request handler
 #######################
 
 
-@app.route("/_check", methods=["POST"])
+@app.route("/_check", methods=["GET"])
 def check():
-    """
+    """ 
     User has submitted the form with a word ('attempt')
     that should be formed from the jumble and on the
     vocabulary list.  We respond depending on whether
     the word is on the vocab list (therefore correctly spelled),
     made only from the jumble letters, and not a word they
     already found.
-    """
+    """ 
     app.logger.debug("Entering check")
-
+     
     # The data we need, from form and from cookie
-    text = flask.request.form["attempt"]
-    jumble = flask.session["jumble"]
-    matches = flask.session.get("matches", [])  # Default to empty list
-
+    text = flask.request.args.get("text", type=str) 
+    
+    jumble = flask.session["jumble"] # The jumbled word.
+    matches = flask.session.get("matches", [])  # Default to empty list. Adds matched word
+    
     # Is it good?
-    in_jumble = LetterBag(jumble).contains(text)
-    matched = WORDS.has(text)
-
+    in_jumble = LetterBag(jumble).contains(text) # boolean if word in jumble.
+    matched = WORDS.has(text) # True if word is found (bool)   
     # Respond appropriately
     if matched and in_jumble and not (text in matches):
         # Cool, they found a new word
@@ -110,13 +110,9 @@ def check():
     else:
         app.logger.debug("This case shouldn't happen!")
         assert False  # Raises AssertionError
-
-    # Choose page:  Solved enough, or keep going?
-    if len(matches) >= flask.session["target_count"]:
-       return flask.redirect(flask.url_for("success"))
-    else:
-       return flask.redirect(flask.url_for("keep_going"))
-
+    rslt = {"matched": text in matches}
+    return flask.jsonify(result=rslt)
+    
 ###############
 # AJAX request handlers
 #   These return JSON, rather than rendering pages.
@@ -145,7 +141,7 @@ def format_filt(something):
     """
     return "Not what you asked for"
 
-###################
+###s###############
 #   Error handlers
 ###################
 
