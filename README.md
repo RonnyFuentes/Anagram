@@ -10,13 +10,10 @@ The vocabulary word list is fixed for one invocation of the server, so multiple 
 
 # Tasks
 
-* Familiarize yourself with flask_vocab.py and flask_minijax.py by running them separately. You need to understand them to do this project.
+* Familiarize yourself with Flask, Javascript and AJAX interactions.
 
-* Your task is to replace the form interaction (in flask_vocab.py) with AJAX interaction on each keystroke using flask_minijax.py. 
+* Replace the form interaction with AJAX interaction on each keystroke using flask_minijax.py. 
 
-* You will write your own Dockerfile (see examples provided in prior projects). Dockerfile should be placed inside vocab folder.
-
-* You will submit your credentials.ini in canvas. It should have information on how we should get your git repo (which should contain your Dockerfile). 
 
 # Contributors
 --------------
